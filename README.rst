@@ -31,7 +31,7 @@ Development
 .. code:: bash
 
     mkdir archive
-    python3 -mzeep https://webservices.sandbox.netsuite.com/wsdl/v2016_1_0/netsuite.wsdl > archive/wsdl.txt
+    python3 -mzeep https://webservices.sandbox.netsuite.com/wsdl/v2019_1_0/netsuite.wsdl > archive/wsdl.txt
     # improve formatting
     sed -i -e 's/, /, \n          /g' archive/wsdl.txt
     less archive/wsdl.txt
