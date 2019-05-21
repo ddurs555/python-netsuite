@@ -2,11 +2,6 @@ Python Netsuite
 ===============
 Netsuite Python Toolkit for SuiteTalk SOAP API.
 
-Installation
-------------
-.. code:: python
-
-    pip3 install git+git://github.com/fmalina/python-netsuite.git#egg=python-netsuite
 
 Example usage
 -------------
