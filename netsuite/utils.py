@@ -1,18 +1,15 @@
-from netsuite.client import client, app_info, passport
+import ns_config
 from netsuite.service import (
     RecordRef,
-    SearchPreferences
+    SearchPreferences,
+    app_info,
+    get_soapheaders,
+    get_service
 )
 
 
 class obj(object):
-    """Dictionary to object utility.
 
-    >>> d = {'b': {'c': 2}}
-    >>> x = obj(d)
-    >>> x.b.c
-    2
-    """
     def __init__(self, d):
         for a, b in d.items():
             if isinstance(b, (list, tuple)):
@@ -22,32 +19,75 @@ class obj(object):
                setattr(self, a, obj(b)
                    if isinstance(b, dict) else b)
 
+def _call(record, function):
+    soapheaders = get_soapheaders()
+    if not record:
+        return None
+    if not soapheaders:
+        return None
 
-def get_record_by_type(type, internal_id):
-    record = RecordRef(internalId=internal_id, type=type)
-    response = client.service.get(record,
-        _soapheaders={
-            'applicationInfo': app_info,
-            'passport': passport,
-        }
+    response = function(
+        record,
+        _soapheaders=soapheaders
     )
-    r = response.body.readResponse
-    if r.status.isSuccess:
-        return r.record
+    return response
+
+
+def get(record):
+    return _call(record, get_service().get)
+
+
+def add(record):
+    return _call(record, get_service().add)
+
+
+def update(record):
+    return _call(record, get_service().update)
+
+
+def delete(record):
+    return _call(record, get_service().delete)
+
+
+def get_multiple(array_of_record_references):
+    soapheaders = get_soapheaders()
+    if not array_of_record_references:
+        return None
+    if len(array_of_record_references) <= 0:
+        return None
+    if not soapheaders:
+        return None
+    response = get_service().getList(
+        array_of_record_references,
+        _soapheaders=soapheaders
+    )
+    return response
+
+def add_multiple(array_of_records):
+    pass
+
+
+def update_multiple(array_of_records):
+    pass
+
+
+def delete_multiple(array_of_record_references):
+    pass
+
+
+def get_record_by_type(internal_id, type):
+    return get(RecordRef(internalId=internal_id, type=type))
 
 
 def search_records_using(searchtype):
-    search_preferences = SearchPreferences(
-        bodyFieldsOnly=False,
-        returnSearchColumns=True,
-        pageSize=20
-    )
-
-    return client.service.search(
-        searchRecord=searchtype,
-        _soapheaders={
-            'searchPreferences': search_preferences,
-            'applicationInfo': app_info,
-            'passport': passport,
-        }
-    )
+    soapheaders = get_soapheaders()
+    if soapheaders:
+        soapheaders['searchPreferences'] = SearchPreferences(
+            bodyFieldsOnly=False,
+            returnSearchColumns=True,
+            pageSize=20
+        )
+        return get_service().search(
+            searchRecord=searchtype,
+            _soapheaders=soapheaders
+        )

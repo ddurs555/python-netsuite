@@ -1,22 +1,28 @@
 
-from netsuite.client import client, passport, app_info
 from netsuite.utils import (
-    get_record_by_type,
+    get,
     search_records_using
 )
 from netsuite.service import (
+    RecordRef,
     Customer,
     CustomerSearchBasic,
-    SearchStringField
+    SearchStringField,
+    get_soapheaders,
+    get_service
 )
 import uuid
 
+MODULE_TYPE = 'customer'
 
 def get_customer(internal_id):
-    return get_record_by_type('customer', internal_id)
+    return get(RecordRef(type=MODULE_TYPE, internalId=internal_id))
 
 
 def get_or_create_customer(customer_data):
+    soapheaders = get_soapheaders()
+    if not soapheaders:
+        return None
     """
     Lookup customer, add a customer if lookup fails.
     """
@@ -24,10 +30,7 @@ def get_or_create_customer(customer_data):
     if not internal_id:
         customer_data['entityId'] = str(uuid.uuid4())
         customer = Customer(**customer_data)
-        response = client.service.add(customer, _soapheaders={
-            'passport': passport,
-            'applicationInfo': app_info
-        })
+        response = get_service().add(customer, _soapheaders=soapheaders)
         r = response.body.writeResponse
         if r.status.isSuccess:
             internal_id = r.baseRef.internalId

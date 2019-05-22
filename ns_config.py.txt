@@ -1,7 +1,22 @@
-WSDL_URL = 'https://webservices.sandbox.netsuite.com/wsdl/v2016_2_0/netsuite.wsdl'
-NS_EMAIL= 'admin@example.com'
-NS_PASSWORD = '*********'
-NS_ROLE = '1111'
-NS_ACCOUNT = '1111111'
-NS_APPID = 'FFFFFFFF-FFFF-0000-0000-FFFFFFFFFFFF'
+import oauth2 as oauth
+
+WSDL_URL = 'https://<your_account_id>.suitetalk.api.netsuite.com/wsdl/v2019_1_0/netsuite.wsdl'
+NS_EMAIL= 'ns_login_email'
+NS_PASSWORD = 'your_password'
+NS_ROLE = '3'
+NS_ACCOUNT = 'your_account_id'
+NS_APPID = 'your_app_id'
+
+AUTH = 'tba'
+
+OAUTH_KEYS = {
+    'token': oauth.Token(
+        key='your_key_here',
+        secret='your_secret_here'
+    ),
+    'consumer': oauth.Consumer(
+        key='your_key_here',
+        secret='your_secret_here'
+    )
+}
 

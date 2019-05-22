@@ -1,4 +1,3 @@
-from netsuite.client import client, passport, app_info
 from netsuite.service import (
     Address,
     CashSale,
@@ -8,7 +7,10 @@ from netsuite.service import (
     SalesOrderItem,
     SalesOrderItemList,
     RecordRef,
-    ListOrRecordRef
+    ListOrRecordRef,
+    passport,
+    app_info,
+    get_service
 )
 from netsuite.api.customer import get_or_create_customer
 from netsuite.test_data import (
@@ -18,7 +20,6 @@ from netsuite.test_data import (
 from netsuite.utils import get_record_by_type
 
 from datetime import datetime
-from lxml import etree
 
 
 def get_item_reference(item):
@@ -62,14 +63,11 @@ def create_cashsale_salesorder(data, sale_models):
         sale_data['shipAddressList'] = ListOrRecordRef(internalId=2)
 
     sale = sale_models['sale'](**sale_data)
-    response = client.service.add(sale, _soapheaders={
+    response = get_service().add(sale, _soapheaders={
         'passport': passport,
         'applicationInfo': app_info
     })
-    # print(etree.tostring(client.service._binding.create_message('add', sale, _soapheaders={
-    #    'passport': passport,
-    #    'applicationInfo': app_info
-    # })))
+
     r = response.body.writeResponse
     if r.status.isSuccess:
         record_type = None
