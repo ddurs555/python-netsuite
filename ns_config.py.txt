@@ -1,22 +1,38 @@
 import oauth2 as oauth
 
-WSDL_URL = 'https://<your_account_id>.suitetalk.api.netsuite.com/wsdl/v2019_1_0/netsuite.wsdl'
-NS_EMAIL= 'ns_login_email'
-NS_PASSWORD = 'your_password'
-NS_ROLE = '3'
-NS_ACCOUNT = 'your_account_id'
-NS_APPID = 'your_app_id'
+DEBUG = False
+NS_APPS = [
+    {
+        'application_id':'<your_app>',
+        'type':'soap',
+        'role':'3',
+        'account':'<your_account>',
+        'auth':'tba',
+        'url':'https://<your_account>.suitetalk.api.netsuite.com/wsdl/v2019_1_0/netsuite.wsdl',
+        'token': oauth.Token(
+            key='<your_key>',
+            secret='<your_secret>'
+        ),
+        'consumer': oauth.Consumer(
+            key='<your_key>',
+            secret='<your_secret>'
+        )
+    },
+    {
+        'application_id':'<your_app>',
+        'type':'restlet',
+        'role':'3',
+        'account':'<your_account>',
+        'auth':'tba',
+        'url':'https://<your_account>.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=1234&deploy=1',
+        'token': oauth.Token(
+            key='<your_key>',
+            secret='<your_secret>'
+        ),
+        'consumer': oauth.Consumer(
+            key='<your_key>',
+            secret='<your_secret>'
+        )
+    },
 
-AUTH = 'tba'
-
-OAUTH_KEYS = {
-    'token': oauth.Token(
-        key='your_key_here',
-        secret='your_secret_here'
-    ),
-    'consumer': oauth.Consumer(
-        key='your_key_here',
-        secret='your_secret_here'
-    )
-}
-
+]

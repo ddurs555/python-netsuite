@@ -1,15 +1,14 @@
-from netsuite.utils import (
+from netsuite.api.soap.utils import (
     add,
     get,
     update,
-    delete,
-    search_records_using
+    delete
 )
-from netsuite.service import (
+from netsuite.api.soap.service import (
     RecordRef,
     Contact,
 )
-import uuid
+
 """
 ns13:Contact(nullFieldList: ns0:NullField, 
             customForm: ns0:RecordRef, 
