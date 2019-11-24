@@ -1,6 +1,3 @@
 zeep=3.3.1
 oauth2
-hashlib
-base64
-hmac
 urllib3

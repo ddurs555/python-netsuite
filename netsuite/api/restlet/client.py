@@ -80,17 +80,3 @@ def delete(payload):
     return json.loads(conn.text)
 
 
-def main():
-    payload = {
-        'custrecord_cc_image':'https://mrosupply2-dyn-images.s3.amazonaws.com/category_image/872_na6KdbH_Eahra48.jpg',
-        'name':'davids API test',
-        'custrecord_cc_description':'Take me down to the paradise city where the grass is green',
-        'custrecord_cc_short_description':'ooooh wont you please take me home',
-    }
-    get(payload={'id':'38'})
-    post(payload=payload)
-    put(payload=payload)
-    delete(payload=payload)
-
-if __name__ == "__main__":
-    main()
