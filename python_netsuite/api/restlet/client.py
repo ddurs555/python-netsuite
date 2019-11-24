@@ -3,7 +3,11 @@ import oauth2 as oauth
 import requests
 import time
 import json
-import ns_config
+try:
+    import ns_config
+except ImportError:
+    raise ImportError('Please review README.rst for python_netsuite package: ns_config.py required on path')
+
 
 
 

@@ -1,4 +1,7 @@
-import ns_config
+try:
+    import ns_config
+except ImportError:
+    raise ImportError('Please review README.rst for python_netsuite package: ns_config.py required on path')
 
 def get_next_soap_app():
     return _get_next_app('soap')
