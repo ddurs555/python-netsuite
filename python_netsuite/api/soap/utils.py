@@ -1,4 +1,4 @@
-from netsuite.api.soap.service import (
+from python_netsuite.api.soap.service import (
     RecordRef,
     SearchPreferences,
     get_soapheaders,

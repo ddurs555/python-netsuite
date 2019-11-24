@@ -2,7 +2,7 @@ from zeep import Client
 from zeep.cache import SqliteCache
 from zeep.transports import Transport
 from hashlib import sha1 as SHA1
-from netsuite.api.common.utils import get_next_soap_app
+from python_netsuite.api.common.utils import get_next_soap_app
 import time
 import urllib.parse
 import hmac
@@ -71,7 +71,7 @@ def get_soapheaders():
 
 def get_service():
     base_url = client.service.getDataCenterUrls(account=ns_config.NS_ACCOUNT).body.getDataCenterUrlsResult.dataCenterUrls.webservicesDomain
-    return client.create_service('{urn:platform_2019_1.webservices.netsuite.com}NetSuiteBinding', base_url+'/services/NetSuitePort_2019_1')
+    return client.create_service('{urn:platform_2019_1.webservices.python_netsuite.com}NetSuiteBinding', base_url+'/services/NetSuitePort_2019_1')
 
 model = client.get_type
 

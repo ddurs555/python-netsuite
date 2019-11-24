@@ -1,4 +1,4 @@
-from netsuite.api.soap.service import (
+from python_netsuite.api.soap.service import (
     Address,
     CashSale,
     CashSaleItem,
@@ -12,12 +12,12 @@ from netsuite.api.soap.service import (
     app_info,
     get_service
 )
-from netsuite.api.soap.customer import get_or_create_customer
-from netsuite.api.soap.test_data import (
+from python_netsuite.api.soap.customer import get_or_create_customer
+from python_netsuite.api.soap.test_data import (
     prepare_address,
     prepare_customer_data,
 )
-from netsuite.api.soap.utils import get_record_by_type
+from python_netsuite.api.soap.utils import get_record_by_type
 
 from datetime import datetime
 

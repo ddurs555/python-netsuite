@@ -1,4 +1,4 @@
-from netsuite.api.soap.utils import obj
+from python_netsuite.api.soap.utils import obj
 
 test_data = {
     'line_items': [

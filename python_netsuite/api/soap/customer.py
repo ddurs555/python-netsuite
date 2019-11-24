@@ -1,9 +1,9 @@
 
-from netsuite.api.soap.utils import (
+from python_netsuite.api.soap.utils import (
     get,
     search_records_using
 )
-from netsuite.api.soap.service import (
+from python_netsuite.api.soap.service import (
     RecordRef,
     Customer,
     CustomerSearchBasic,

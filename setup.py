@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from setuptools import setup, find_packages
-import netsuite as app
+import python_netsuite as app
 
 setup(
-    name="netsuite",
+    name="python_netsuite",
     version=app.__version__,
     description='Netsuite Python Toolkit for SuiteTalk SOAP API',
     long_description=open('README.rst').read(),
@@ -12,7 +12,7 @@ setup(
     keywords='Netsuite,Python,SuiteTalk,SOAP,API',
     author='fmalina',
     author_email='fmalina@gmail.com',
-    url="https://github.com/fmalina/python-netsuite",
+    url="https://github.com/fmalina/python-python_netsuite",
     packages=find_packages(),
     include_package_data=True,
     install_requires=['zeep'],

@@ -1,4 +1,4 @@
-from netsuite.api.common.utils import get_next_restlet_app
+from python_netsuite.api.common.utils import get_next_restlet_app
 import oauth2 as oauth
 import requests
 import time

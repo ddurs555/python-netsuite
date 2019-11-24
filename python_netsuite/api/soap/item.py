@@ -1,12 +1,12 @@
 """
 Product search
 """
-from netsuite.api.soap.service import (
+from python_netsuite.api.soap.service import (
     ItemSearchBasic,
     SearchMultiSelectField,
     RecordRef,
 )
-from netsuite.api.soap.utils import (
+from python_netsuite.api.soap.utils import (
     get,
     update,
     update_multiple,

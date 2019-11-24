@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 import unittest
 
-from netsuite.api.soap.customer import (
+from python_netsuite.api.soap.customer import (
     get_or_create_customer
 )
-from netsuite.api.soap.sale import (
+from python_netsuite.api.soap.sale import (
     create_cashsale,
     create_salesorder
 )
 
-from netsuite.api.soap.test_data import (
+from python_netsuite.api.soap.test_data import (
     data,
     prepare_customer_data,
 )

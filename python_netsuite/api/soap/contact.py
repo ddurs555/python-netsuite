@@ -1,10 +1,10 @@
-from netsuite.api.soap.utils import (
+from python_netsuite.api.soap.utils import (
     add,
     get,
     update,
     delete
 )
-from netsuite.api.soap.service import (
+from python_netsuite.api.soap.service import (
     RecordRef,
     Contact,
 )
