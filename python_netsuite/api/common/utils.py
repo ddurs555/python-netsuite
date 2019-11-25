@@ -13,7 +13,7 @@ def _get_next_app(type):
     count = 1
     size = len(ns_config.NS_APPS)
 
-    for app in next(ns_config.NS_APPS):
+    for app in next(iter(ns_config.NS_APPS)):
         if app.type == type:
             return app
         if count == size:
