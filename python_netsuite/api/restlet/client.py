@@ -59,7 +59,7 @@ def post(app_id, payload):
     method = 'POST'
     app = get_app_by_id(app_id)
     conn = requests.post(app['url'],
-                         headers=_generate_headers(app, method, app.url),
+                         headers=_generate_headers(app, method, app['url']),
                          data=json.dumps(payload))
     return json.loads(conn.text)
 
@@ -68,7 +68,7 @@ def put(app_id, payload):
     method = 'PUT'
     app = get_app_by_id(app_id)
     conn = requests.post(app['url'],
-                         headers=_generate_headers(app, method, app.url),
+                         headers=_generate_headers(app, method, app['url']),
                          data=json.dumps(payload))
     return json.loads(conn.text)
 
