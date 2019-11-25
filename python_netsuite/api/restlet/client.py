@@ -1,4 +1,4 @@
-from python_netsuite.api.common.utils import get_next_restlet_app
+from python_netsuite.api.common.utils import get_app_by_id
 import oauth2 as oauth
 import requests
 import time
@@ -43,9 +43,9 @@ def _generate_headers(app, method, url):
     }
 
 
-def get(payload):
+def get(app_id, payload):
     method = 'GET'
-    app = get_next_restlet_app()
+    app = get_app_by_id(app_id)
     url = requests.Request(method,
                            app.url,
                            params=payload).prepare().url
@@ -55,27 +55,27 @@ def get(payload):
     return json.loads(conn.text)
 
 
-def post(payload):
+def post(app_id, payload):
     method = 'POST'
-    app = get_next_restlet_app()
+    app = get_app_by_id(app_id)
     conn = requests.post(app.url,
                          headers=_generate_headers(app, method, app.url),
                          data=json.dumps(payload))
     return json.loads(conn.text)
 
 
-def put(payload):
+def put(app_id, payload):
     method = 'PUT'
-    app = get_next_restlet_app()
+    app = get_app_by_id(app_id)
     conn = requests.post(app.url,
                          headers=_generate_headers(app, method, app.url),
                          data=json.dumps(payload))
     return json.loads(conn.text)
 
 
-def delete(payload):
+def delete(app_id, payload):
     method = 'DELETE'
-    app = get_next_restlet_app()
+    app = get_app_by_id(app_id)
     url = requests.Request(method,
                            app.url,
                            params=payload).prepare().url
