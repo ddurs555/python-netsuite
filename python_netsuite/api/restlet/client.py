@@ -31,7 +31,6 @@ def _get_oauth_request(app, method, url):
         parameters=_get_params(token=app['token'], consumer=app['consumer'])
     )
 
-
 def _generate_headers(app, method, url):
     req = _get_oauth_request(app=app, method=method, url=url)
     req.sign_request(SIG_METHOD, app['consumer'], app['token'])
