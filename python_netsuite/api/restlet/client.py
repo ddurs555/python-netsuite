@@ -19,8 +19,8 @@ def _get_params(token, consumer):
         'oauth_version': "1.0",
         'oauth_nonce': oauth.generate_nonce(),
         'oauth_timestamp': str(int(time.time())),
-        'oauth_token': token['key'],
-        'oauth_consumer_key': consumer['key'],
+        'oauth_token': token.key,
+        'oauth_consumer_key': consumer.key,
     }
 
 
